@@ -1,1 +1,327 @@
+SQL> set pagesize 200;
+SQL> set lines 200;
+SQL> select * from emp;
 
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select * from emp where deptno in (20,30,50,70,90);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+11 rows selected.
+
+SQL> select * from emp where emno in ('SMITH','JONES',KING');
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> select * from emp where eNAME in ('SMITH','JONES',KING');
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> select * from emp where eNAME in ('SMITH','JONES','KING');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+
+SQL> select * from emp where eMONO in (7902,7788,7900);
+select * from emp where eMONO in (7902,7788,7900)
+                        *
+ERROR at line 1:
+ORA-00904: "EMONO": invalid identifier
+
+
+SQL> select * from emp where eMPNO in (7902,7788,7900);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+SQL> select * from emp where SAL in (1250,300,5000);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+
+SQL> select * from emp where jon not in ('manager','clerk');
+select * from emp where jon not in ('manager','clerk')
+                        *
+ERROR at line 1:
+ORA-00904: "JON": invalid identifier
+
+
+SQL> select * from emp where job not in ('manager','clerk');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select * from emp where job except in ('manager','clerk');
+select * from emp where job except in ('manager','clerk')
+                            *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> select * from emp where job except in ('MANAGER','CLERK');
+select * from emp where job except in ('MANAGER','CLERK')
+                            *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> select * from emp where job not in ('MANAGER','CLERK');
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+7 rows selected.
+
+SQL> select * from emp where deptno not in (10,20);
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+
+6 rows selected.
+
+SQL> select * from emp where sal between 2000 and 5000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+6 rows selected.
+
+SQL> select * from emp where sal between not in 2000 and 5000;
+select * from emp where sal between not in 2000 and 5000
+                                    *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from emp where sal not between  2000 and 5000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+8 rows selected.
+
+SQL> select * from emp where hiredate in between 1982  ;
+select * from emp where hiredate in between 1982
+                                    *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from emp where hiredate in('1982')  ;
+select * from emp where hiredate in('1982')
+                                    *
+ERROR at line 1:
+ORA-01861: literal does not match format string
+
+
+SQL> select * from emp where hiredate in(1982)  ;
+select * from emp where hiredate in(1982)
+                                 *
+ERROR at line 1:
+ORA-00932: inconsistent datatypes: expected DATE got NUMBER
+
+
+SQL> select * from emp where hiredate in(01-jan-1982)  ;
+select * from emp where hiredate in(01-jan-1982)
+                                       *
+ERROR at line 1:
+ORA-00904: "JAN": invalid identifier
+
+
+SQL> select * from emp where hiredate in('01-JAN-1982')  ;
+
+no rows selected
+
+SQL> select * from emp where hiredate in('31-DEC-1981')  ;
+
+no rows selected
+
+SQL> select * from emp where hiredate in BETWEEN ('01-JAN-1981')  ;
+select * from emp where hiredate in BETWEEN ('01-JAN-1981')
+                                    *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from emp where hiredate between '01-JAN-1982' and '31-DEC-1982'  ;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+SQL> select * from emp where hiredate not in between '01-JAN-1981' and '31-DEC-1981';
+select * from emp where hiredate not in between '01-JAN-1981' and '31-DEC-1981'
+                                        *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from emp where hiredate not in between ('01-JAN-1981' and '31-DEC-1981');
+select * from emp where hiredate not in between ('01-JAN-1981' and '31-DEC-1981')
+                                        *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from emp where hiredate not between ('01-JAN-1981' and '31-DEC-1981');
+select * from emp where hiredate not between ('01-JAN-1981' and '31-DEC-1981')
+                                                            *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select * from emp where hiredate not in ('01-JAN-1981' and '31-DEC-1981');
+select * from emp where hiredate not in ('01-JAN-1981' and '31-DEC-1981')
+                                                       *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select * from emp where hiredate not between '01-JAN-1981' and '31-DEC-1981';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+SQL> select * from emp where sal between 4000 and 2000;
+
+no rows selected
+
+SQL> select * from emp where sal between 2000 and 4000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+SQL> select * from emp where comm is null ;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 09-DEC-82       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7876 ADAMS      CLERK           7788 12-JAN-83       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+10 rows selected.
+
+SQL> select * from emp where comm is not null ;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+
+SQL> select * from emp where mgr null ;
+select * from emp where mgr null
+                            *
+ERROR at line 1:
+ORA-00920: invalid relational operator
+
+
+SQL> select * from emp where mgr is null ;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+
+SQL>
