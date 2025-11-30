@@ -1,4 +1,4 @@
-        
+         
 SQL> set pagesize 300;
 SQL> set lines 300;
 SQL> select * from emp; 
