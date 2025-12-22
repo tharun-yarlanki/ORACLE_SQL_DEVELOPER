@@ -1,1 +1,189 @@
+1. CREATE TABLE STUDENT
+CREATE TABLE STUDENT
+(
+  SID     NUMBER,
+  SNAME   VARCHAR2(15),
+  GENDER  VARCHAR2(10),
+  FEE     NUMBER,
+  DOB     DATE
+);
 
+Explanation:
+
+CREATE TABLE → creates a new table in database
+
+STUDENT → table name
+
+SID NUMBER → student id (numeric)
+
+SNAME VARCHAR2(15) → student name (up to 15 characters)
+
+GENDER VARCHAR2(10) → gender
+
+FEE NUMBER → fee amount
+
+DOB DATE → date of birth
+
+👉 This query creates only structure, no data.
+
+2. View structure of STUDENT table
+DESC STUDENT;
+
+Explanation:
+
+DESC means describe
+
+Shows:
+
+Column names
+
+Datatypes
+
+Size
+
+👉 Used to check table design.
+
+3. Insert records into STUDENT table
+INSERT INTO STUDENT VALUES (1, 'RAVI', 'MALE', 12000, DATE '2002-05-10');
+
+Explanation:
+
+INSERT INTO → adds data into table
+
+VALUES → actual data
+
+Order of values must match table columns
+
+👉 Inserts one row into STUDENT table.
+
+4. Insert SURYA with FEE = 10000
+INSERT INTO STUDENT (SNAME, FEE)
+VALUES ('SURYA', 10000);
+
+Explanation:
+
+We are inserting only selected columns
+
+Other columns will store NULL
+
+SNAME gets 'SURYA'
+
+FEE gets 10000
+
+5. Display all records
+SELECT * FROM STUDENT;
+
+Explanation:
+
+SELECT → fetch data
+
+* → all columns
+
+FROM STUDENT → from STUDENT table
+
+👉 Displays complete table data.
+
+6. Add ADDRESS column
+ALTER TABLE STUDENT
+ADD ADDRESS VARCHAR2(30);
+
+Explanation:
+
+ALTER TABLE → modify existing table
+
+ADD → add new column
+
+ADDRESS → column name
+
+VARCHAR2(30) → size 30
+
+👉 Adds a new column without affecting existing data.
+
+7. Increase size of SNAME column
+ALTER TABLE STUDENT
+MODIFY SNAME VARCHAR2(20);
+
+Explanation:
+
+MODIFY → change column datatype or size
+
+SNAME size increased from 15 → 20
+
+👉 Used when name length is not enough.
+
+8. Drop ADDRESS column
+ALTER TABLE STUDENT
+DROP COLUMN ADDRESS;
+
+Explanation:
+
+DROP COLUMN → permanently removes column
+
+ADDRESS column and its data are deleted
+
+👉 Other columns remain unchanged.
+
+9. Rename SNAME to NAME
+ALTER TABLE STUDENT
+RENAME COLUMN SNAME TO NAME;
+
+Explanation:
+
+Renames column
+
+Only column name changes
+
+Data remains same
+
+10. Delete STUDENT table completely
+DROP TABLE STUDENT;
+
+Explanation:
+
+Deletes:
+
+All records
+
+Table structure
+
+Cannot be recovered normally
+
+👉 Table is fully removed from database.
+
+11. Restore STUDENT table after DROP
+
+❌ Not possible directly
+
+Explanation:
+
+Oracle does not support UNDROP
+
+Once dropped, table is gone
+
+You must recreate the table
+
+CREATE TABLE STUDENT (...);
+
+12. Rename STUDENT table to STUDENTDATA
+RENAME STUDENT TO STUDENTDATA;
+
+Explanation:
+
+Changes table name
+
+Table data and structure remain same
+
+13. Remove all rows from A1 but keep structure
+TRUNCATE TABLE A1;
+
+Explanation:
+
+Deletes all rows
+
+Keeps table structure
+
+Faster than DELETE
+
+Cannot rollback
+
+👉 Best command to reuse table.
