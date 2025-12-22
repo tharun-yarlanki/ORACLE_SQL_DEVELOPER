@@ -1,1 +1,165 @@
+1. Create a STUDENT table
 
+👉 We use CREATE TABLE to create a table.
+
+CREATE TABLE STUDENT
+(
+  SID     NUMBER,
+  SNAME   VARCHAR2(15),
+  GENDER  VARCHAR2(10),
+  FEE     NUMBER,
+  DOB     DATE
+);
+
+
+Explanation (simple):
+
+SID → student id (number)
+
+SNAME → student name
+
+GENDER → male/female
+
+FEE → fee amount
+
+DOB → date of birth
+
+2. Command to view the structure of STUDENT table
+
+👉 In Oracle, we use DESC (describe).
+
+DESC STUDENT;
+
+
+This shows:
+
+Column names
+
+Data types
+
+Size
+
+3. Insert records into the STUDENT table
+
+👉 Use INSERT INTO.
+
+INSERT INTO STUDENT VALUES (1, 'RAVI', 'MALE', 12000, DATE '2002-05-10');
+INSERT INTO STUDENT VALUES (2, 'ANU', 'FEMALE', 15000, DATE '2001-08-15');
+
+COMMIT;
+
+
+COMMIT saves the data permanently.
+
+4. Insert student with NAME = 'SURYA' and FEE = 10000
+
+👉 If other columns are not known, specify only required columns.
+
+INSERT INTO STUDENT (SNAME, FEE)
+VALUES ('SURYA', 10000);
+
+COMMIT;
+
+5. Display all records from STUDENT table
+
+👉 Use SELECT.
+
+SELECT * FROM STUDENT;
+
+
+* means all columns.
+
+6. Add a new column ADDRESS to STUDENT table
+
+👉 Use ALTER TABLE + ADD.
+
+ALTER TABLE STUDENT
+ADD ADDRESS VARCHAR2(30);
+
+7. Increase size of SNAME column to 20
+
+👉 Use ALTER TABLE + MODIFY.
+
+ALTER TABLE STUDENT
+MODIFY SNAME VARCHAR2(20);
+
+8. Drop the ADDRESS column
+
+👉 Use ALTER TABLE + DROP COLUMN.
+
+ALTER TABLE STUDENT
+DROP COLUMN ADDRESS;
+
+9. Rename column SNAME to NAME
+
+👉 Oracle uses RENAME COLUMN.
+
+ALTER TABLE STUDENT
+RENAME COLUMN SNAME TO NAME;
+
+10. Completely delete STUDENT table (data + structure)
+
+👉 Use DROP TABLE.
+
+DROP TABLE STUDENT;
+
+
+⚠️ This removes:
+
+All rows
+
+Table structure
+
+11. Restore STUDENT table after dropping
+
+👉 Not possible directly ❌
+
+Explanation (important):
+
+Once you use DROP TABLE, table is permanently deleted.
+
+You must re-create the table again.
+
+CREATE TABLE STUDENT
+(
+  SID     NUMBER,
+  NAME    VARCHAR2(20),
+  GENDER  VARCHAR2(10),
+  FEE     NUMBER,
+  DOB     DATE
+);
+
+12. Rename table STUDENT to STUDENTDATA
+
+👉 Use RENAME.
+
+RENAME STUDENT TO STUDENTDATA;
+
+13. Remove all rows from A1 table but keep structure
+
+👉 Use TRUNCATE (best answer).
+
+Given table:
+CREATE TABLE A1
+(
+  SNO NUMBER(10),
+  SNAME VARCHAR2(10)
+);
+
+INSERT INTO A1 VALUES (1,'surya');
+INSERT INTO A1 VALUES (2,'anushka');
+COMMIT;
+
+Query:
+TRUNCATE TABLE A1;
+
+
+Explanation:
+
+Deletes all rows
+
+Keeps table structure
+
+Faster than DELETE
+
+Cannot be rolled back
