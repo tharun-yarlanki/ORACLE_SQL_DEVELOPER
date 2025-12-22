@@ -101,4 +101,4 @@ insert into tablename(col1,col2,col3)values(value1,value2,col3);
 
 NOTE:-DML commands are not auto commit commands.after inserting data use commit
 ====  command then only data is saved permanently in database.
-====================================================================================================================
+===================================================================================================================
